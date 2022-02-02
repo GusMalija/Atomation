@@ -1,0 +1,75 @@
+---
+title: "skangaga"
+author: "Augustine Malija"
+date: "11/27/2020"
+output: html_document
+---
+# Step 1 : Loading Necessary Packages
+```{r setup, include=FALSE}
+#installing required packages
+library(devtools)# for supporting aspects of package development
+library(roxygen2) # for providing helper functions to load my package
+```
+
+# Step 2: Creating my Package Directory with the Project's File Path
+```{r, eval=FALSE}
+create_package("./skangaga", open = FALSE)
+#navigating to the directory
+setwd("./skangaga", open = FALSE")
+```
+
+# Step 3: Adding Funtions and their Documentations
+
+```{r}
+#saving the function as an R file
+use_r("moto")
+use_r("npawa")
+```
+
+
+```{txt}
+#' Binding two factors
+#'
+#' Creating a new factor from aforementioned factors.
+#'
+#' @param n factor
+#' @param m factor
+#'
+#' @return factor
+#' @export
+moto <- function(n, m) {
+   factor(c(as.character(n), as.character(m)))
+}
+#' @examples
+#' moto(iris$Species[c(1, 51, 101)], PlantGrowth$group[c(1, 11, 21)])
+```
+
+```{txt}
+#' Raising a number to the power of nine
+#' Returns a result of a number raised to power nine
+#' @param x variable of class 'numeric'
+#' @return numeric
+#' @export
+npawa <- function(x) x^9
+```
+
+
+```{r document-moto, eval = FALSE}
+#creating documentation for moto
+document()
+```
+
+
+```{r}
+#previewing my help file
+?moto
+?npawa
+```
+
+# Step 5: Installing
+```{r}
+#setting to a parent working directory containing the package folder
+setwd("..") 
+install("skangaga")
+```
+
